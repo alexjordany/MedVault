@@ -1,24 +1,26 @@
-﻿namespace MedVault;
+﻿using MedVault.Data.Repositories;
+using MedVault.ViewModels;
+
+namespace MedVault;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    public MedicinesViewModel _viewModel;
 
-    public MainPage()
+    public MainPage(MedicinesViewModel viewModel)
     {
         InitializeComponent();
+
+        _viewModel = viewModel;
+        BindingContext = viewModel;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    internal IMedicineService MedicineService { get; }
+
+    protected override void OnAppearing()
     {
-        count++;
-
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        base.OnAppearing();
+        _viewModel.OnActivated();
     }
 }
 
