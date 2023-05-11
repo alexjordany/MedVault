@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MedVault.ViewModels"
+             x:DataType="viewmodels:EditMedicineViewModel"
+             x:Class="MedVault.Pages.EditMedicinePage"
+             Title="{Binding Medicine.MedicineName}">
+
+     <Grid ColumnDefinitions="*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <ScrollView>
+            <Grid Padding="10" >
+            <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="20" HorizontalOptions="Fill">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Medicine name" FontSize="Large"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Text="{Binding Medicine.MedicineName}" Placeholder="Name"  FontSize="Medium"></Entry>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Available quantity" FontSize="Large"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+                <Entry Text="{Binding Medicine.MedicineQuantity}" Placeholder="Quantity" FontSize="Medium"></Entry>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Expiration date" FontSize="Large"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <DatePicker Date="{Binding Medicine.MedicineExpiration}"></DatePicker>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Description" FontSize="Large"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Editor Text="{Binding Medicine.MedicineDescription}" Placeholder="Medicine description" FontSize="Medium" AutoSize="TextChanges" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True"></Editor>
+
+                 <Button Text="Save" Command="{Binding SaveChangesCommand}"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="20" BackgroundColor="Orange" TextColor="White"/>
+                
+            </VerticalStackLayout>
+
+             
+        </Grid>
+        </ScrollView>
+        
+    </Grid>
+    
+</ContentPage>

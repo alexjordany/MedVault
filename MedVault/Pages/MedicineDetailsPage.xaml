@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedVault.Pages.MedicineDetailsPage"
+             xmlns:viewmodel="clr-namespace:MedVault.ViewModels"
+             x:DataType="viewmodel:MedicineDetailsViewModel"
+             Title="{Binding Medicine.MedicineName}">
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,*">
+            <BoxView Color="{StaticResource Yellow100Accent}" Grid.RowSpan="2" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+            <Border StrokeShape="RoundRectangle 80"
+                    Stroke="White"
+                    StrokeThickness="6"
+                    HeightRequest="160"
+                    WidthRequest="160"
+                    Margin="0,8,0,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                <Image Aspect="AspectFill"
+                       HeightRequest="160"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="160"/>
+
+            </Border>
+            <Label
+                   Grid.Row="1"
+                   HorizontalOptions="Center"
+                   Margin="0,15,0,20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Medicine.MedicineName}" FontAttributes="Bold" FontSize="Large" TextColor="White" FontFamily="Futura"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+
+            <VerticalStackLayout Grid.Row="2" Padding="20" Spacing="20" HorizontalOptions="StartAndExpand">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Medicine.MedicineDescription}" FontSize="Medium"></Span>
+                        </FormattedString>
+
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Medicine.MedicineQuantity, StringFormat='Quantity: {0}'}" FontSize="Small"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Style="{StaticResource SmallLabel}" Text="Expiration">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Expiration" FontSize="Small"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <DatePicker Date="{Binding Medicine.MedicineExpiration}" IsEnabled="False"/>
+
+                <Button Text="Edit" Command="{Binding GoToEditionCommand}" CommandParameter="{Binding Medicine}"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="20" BackgroundColor="Orange" TextColor="White"/>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+    </ScrollView>
+
+</ContentPage>
